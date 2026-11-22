@@ -1,22 +1,28 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Max Studio v4
 
-# Run and deploy your AI Studio app
+Open-source Kotlin Android IDE for building apps on mobile with code editing, XML layout preview, diagnostics, and APK packaging.
 
-This contains everything you need to run your app locally.
+## Overview
 
-View your app in AI Studio: https://ai.studio/apps/df90f361-2c00-4fc2-a624-d039cfc54c92
+Max Studio v4 is an Android Studio project structured to help developers write, inspect, and build Android applications.
 
 ## Run Locally
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
+**Prerequisites:** [Android Studio](https://developer.android.com/studio)
 
+1. Open **Android Studio**.
+2. Select **Open** and choose the project directory.
+3. Allow Android Studio and Gradle to sync dependencies and fix any build incompatibilities.
+4. Create a `.env` file in the project directory and add required environment values (see `.env.example` for reference).
+5. Check `app/build.gradle.kts` and configure proper release signing before building a release version.
+6. Run the app on an emulator or physical Android device.
 
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
-7. If you have already published your app in AI Studio, please [request upload key reset](https://support.google.com/googleplay/android-developer/answer/9842756#zippy=%2Crequest-an-upload-key-reset) in Google Play Console.
+## Project Structure
+
+- `app/` — Application source code, resources, and module build configuration
+- `gradle/` — Gradle wrapper and build setup files
+- `build.gradle.kts` — Root Gradle build script
+
+## Contributing & Support
+
+Contributions, issues, and suggestions are welcome. Feel free to open an issue or submit a pull request.
