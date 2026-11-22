@@ -1,0 +1,6 @@
+{
+  "name": "MAX STUDIO",
+  "description": "Android IDE (AIDE-style) workspace with multi-file code editor, XML layout preview, Image Manager, Library ZIP & Firebase JSON importer, .maxstudio/.mss storage backup & recovery, and signed APK build pipeline.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

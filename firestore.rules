@@ -1,0 +1,75 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global safety net: deny all reads and writes by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidProject(data) {
+      return data.userId is string && data.userId.size() >= 1 && data.userId.size() <= 128 &&
+             data.appName is string && data.appName.size() >= 1 && data.appName.size() <= 40 &&
+             data.packageName is string && data.packageName.size() >= 3 && data.packageName.size() <= 80 &&
+             data.accentColorHex is string && data.accentColorHex.size() >= 4 && data.accentColorHex.size() <= 9 &&
+             data.widgets is list && data.widgets.size() <= 80 &&
+             (data.widgets.size() == 0 || data.widgets[0] is map) &&
+             data.variables is list && data.variables.size() <= 40 &&
+             (data.variables.size() == 0 || data.variables[0] is map) &&
+             data.events is map && data.events.size() <= 40;
+    }
+
+    match /users/{userId}/projects/{projectId} {
+      allow get: if isOwner(userId) && isValidId(projectId);
+      allow list: if isOwner(userId);
+
+      allow create: if isOwner(userId) &&
+                       isValidId(projectId) &&
+                       incoming().userId == request.auth.uid &&
+                       incoming().keys().hasAll([
+                         'userId', 'appName', 'packageName', 'accentColorHex',
+                         'widgets', 'variables', 'events', 'createdAt', 'updatedAt'
+                       ]) &&
+                       incoming().keys().hasOnly([
+                         'userId', 'appName', 'packageName', 'accentColorHex',
+                         'widgets', 'variables', 'events', 'createdAt', 'updatedAt'
+                       ]) &&
+                       incoming().createdAt is timestamp && incoming().createdAt <= request.time &&
+                       incoming().updatedAt is timestamp && incoming().updatedAt <= request.time &&
+                       isValidProject(incoming());
+
+      allow update: if isOwner(userId) &&
+                       isValidId(projectId) &&
+                       isValidProject(incoming()) &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().updatedAt is timestamp && incoming().updatedAt <= request.time &&
+                       incoming().diff(existing()).affectedKeys().hasOnly([
+                         'appName', 'packageName', 'accentColorHex',
+                         'widgets', 'variables', 'events', 'updatedAt'
+                       ]);
+
+      allow delete: if isOwner(userId) && isValidId(projectId);
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "787350619519",
+    "project_id": "gen-lang-client-0394150383",
+    "storage_bucket": "gen-lang-client-0394150383.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787350619519:android:bac1c5ffa77ccc1ab8c64a",
+        "android_client_info": {
+          "package_name": "com.maxstudio.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787350619519-02km4tmi4dqnc04afjm6tlk0054259se.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.maxstudio.app",
+            "certificate_hash": "8daca4c4ae7b672f54442617f2f519d2470311ef"
+          }
+        },
+        {
+          "client_id": "787350619519-r340eb8npauaul18h1lkjuj7lc0jdam2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQDwNMyb_0H1nFNn3KeeEu49olcY2Ytsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787350619519-r340eb8npauaul18h1lkjuj7lc0jdam2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

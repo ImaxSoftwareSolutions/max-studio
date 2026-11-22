@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "DroidProject": {
+      "title": "DroidProject",
+      "description": "A user-authored Sketchware-style Android app project containing layout widgets, variables, and event block graphs.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated owner UID matching request.auth.uid"
+        },
+        "appName": {
+          "type": "string",
+          "description": "Display name of the built Android app project"
+        },
+        "packageName": {
+          "type": "string",
+          "description": "Java package identifier for generated MainActivity.java and manifest"
+        },
+        "accentColorHex": {
+          "type": "string",
+          "description": "Primary theme hex color for the project"
+        },
+        "widgets": {
+          "type": "array",
+          "description": "Ordered list of UI widget definitions placed on the layout canvas"
+        },
+        "variables": {
+          "type": "array",
+          "description": "Typed variables (int, String, boolean) declared in the project"
+        },
+        "events": {
+          "type": "object",
+          "description": "Map of event keys (e.g., onCreate, button1_onClick) to lists of logic block nodes"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when project was created (FieldValue.serverTimestamp())"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when project was last modified (FieldValue.serverTimestamp())"
+        }
+      },
+      "required": [
+        "userId",
+        "appName",
+        "packageName",
+        "accentColorHex",
+        "widgets",
+        "variables",
+        "events",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/projects/{projectId}": {
+      "schema": {
+        "$ref": "#/entities/DroidProject"
+      },
+      "description": "User-owned Android app builder projects scoped strictly to the authenticated owner UID."
+    }
+  }
+}

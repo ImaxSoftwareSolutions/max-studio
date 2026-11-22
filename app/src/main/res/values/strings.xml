@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MAX STUDIO</string>
+    <string name="new_project">New Project</string>
+    <string name="restore_projects">Restore Projects</string>
+    <string name="restore_projects_subtitle">Get your projects in a couple of clicks</string>
+    <string name="search_projects_hint">Search for projects...</string>
+    <string name="extract_mss">Extract .mss</string>
+    <string name="build_and_run">Build &amp; Run APK</string>
+    <string name="import_firebase_json">Import Firebase JSON</string>
+    <string name="import_library">Import Library (.zip / .aar / .jar)</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+</resources>
